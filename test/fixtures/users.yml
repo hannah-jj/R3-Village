@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  happiness: 1
+  pollution: 1
+  limit: 1
+
+two:
+  name: MyText
+  happiness: 1
+  pollution: 1
+  limit: 1

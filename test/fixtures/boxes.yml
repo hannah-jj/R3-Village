@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  active: false
+  reuse: 1
+  recycled: false
+  trashed: false
+  user_id: 1
+  item_id: 1
+
+two:
+  active: false
+  reuse: 1
+  recycled: false
+  trashed: false
+  user_id: 1
+  item_id: 1
