@@ -6,8 +6,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-            <img src="waste.png" />
-            <img src="food.png" />
+            <img src="/ingredients/waste.png" />
+            <img src="/ingredients/food.png" />
       </div>
     );
   }
