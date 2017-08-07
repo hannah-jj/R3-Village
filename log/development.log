@@ -771,3 +771,10 @@ No serializer found for resource: #<Item id: 1, name: "ball", size: 8, picture: 
 Completed 200 OK in 21ms (Views: 19.3ms | ActiveRecord: 1.3ms)
 
 
+Started GET "/items.json" for ::1 at 2017-08-07 17:03:44 -0400
+Processing by ItemsController#index as JSON
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT "items".* FROM "items"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.73ms)
+Completed 200 OK in 14ms (Views: 11.4ms | ActiveRecord: 0.8ms)
+
+
