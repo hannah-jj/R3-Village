@@ -17,8 +17,8 @@ const UsersList = ({ users }) => {
 	return (
 		<div>
 			<table>
-				<tr><th>Villager Name</th><th>Happiness</th><th>Pollution</th></tr>
-			{renderUsers}
+				<thead><tr><th>Villager Name</th><th style={{color: "purple"}}>&hearts;</th><th>&#128465;</th></tr></thead>
+				<tbody>{renderUsers}</tbody>
 			</table>
 		</div>
 	);
