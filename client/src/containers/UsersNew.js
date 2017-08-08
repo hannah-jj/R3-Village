@@ -24,7 +24,7 @@ class UsersNew extends Component {
 		return (
 			<div>
 				<h1>Welcome to R3 Village</h1>
-				<h2>Reduce, Recycle and Reuse with LOVE</h2>
+				<h2 style={{color: "purple"}}>Reduce, Recycle and Reuse with &hearts;</h2>
 				<h3>what's Your Name?</h3>
 				<form onSubmit={this.handleOnSubmit}>
 					<input type="text"
