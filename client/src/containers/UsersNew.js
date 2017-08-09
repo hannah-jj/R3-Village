@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
+import * as actions from '../actions/index';
 
 class UsersNew extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: ''
+			name: '',
+			redirect: false
 		};
 	}
 
 	handleOnSubmit = event => {
 		event.preventDefault();
-		console.log("i was clicked yay");
+		this.props.actions.addUser('/api/users', this.state.name);
+		this.setState({redirect: true});
 	}
 
 	handleOnChange = event => {
@@ -20,8 +26,14 @@ class UsersNew extends Component {
 	}
 
 	render() {
+		if (this.state.redirect === true ) {
+			return (<div><p>New Villager Created<Link style={{ marginRight: '12px' }}
+			 	to={`/users`}>home</Link></p></div>);
+		}
+
 		return (
 			<div>
+				
 				<h1>Welcome to R3 Village</h1>
 				<h2>Reduce, Recycle and Reuse with <strong style={{color: "purple"}}>&hearts;</strong></h2>
 				<h3>what's Your Name?</h3>
@@ -40,4 +52,8 @@ class UsersNew extends Component {
 	}
 };
 
-export default UsersNew;
+function mapDispatchToProps(dispatch) {
+	return {actions: bindActionCreators(actions, dispatch)};
+}
+
+export default connect(null, mapDispatchToProps) (UsersNew);

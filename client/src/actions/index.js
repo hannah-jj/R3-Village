@@ -8,6 +8,10 @@ function getUserSuccess(boxes) {
   return {type: 'FETCH_BOXES', boxes: boxes};
 }
 
+function addUserSuccess(users) {
+  return {type: 'ADD_USER', users: users};
+}
+
 const fetchUsers = (url) => {
   return function(dispatch) {
     return VillageAPI.getInfo(url)
@@ -26,9 +30,19 @@ const fetchBoxes = (url) => {
   }
 }
 
+const addUser = (url, name) => {
+  return function(dispatch) {
+    return VillageAPI.addUser(url, name)
+      .then(users => {
+      dispatch(addUserSuccess(users))
+    })
+  }
+}
+
 
 
 export {
   fetchUsers,
-  fetchBoxes
+  fetchBoxes,
+  addUser
 }

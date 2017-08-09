@@ -10,5 +10,20 @@ export default class VillageAPI {
         .then(response => response.json())
         .catch(error => console.log(error))
     }
+
+    static addUser(url, name) {
+        return fetch(url, {
+            method: "POST", 
+            headers: {
+                'Accepts': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name
+            })
+        })
+        .then(response => response.json())
+        .catch(error => console.log(error))
+    }
 }
 
