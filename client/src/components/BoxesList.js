@@ -1,9 +1,9 @@
 import React from 'react';
 
 const BoxesList = ({ boxes }) => {
-	console.log(boxes);
-	const renderBoxes = boxes.map(box =>
-		<tr><td>{box.name}</td></tr>		
+
+	const renderBoxes = boxes.map(box => 
+			<td key={box.id}><img src={box.item_url} alt={box.item_name} /></td>
 	);
 
 	return (
@@ -14,5 +14,6 @@ const BoxesList = ({ boxes }) => {
 		</div>
 	);
 };
+
 
 export default BoxesList;

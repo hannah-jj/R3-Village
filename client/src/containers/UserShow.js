@@ -10,22 +10,27 @@ class UserShow extends Component {
 	componentDidMount(){
 		this.props.actions.fetchBoxes(`/api/${this.props.match.url}`);
 	}
-	
+
 	componentDidUpdate(prevProps){
 		if (this.props.user !== prevProps.user) {
 			this.props.actions.fetchBoxes(`/api/${this.props.match.url}`);
 		}
 	}
 
+
+
+
 	render(){
 		console.log("in render");
 		
 		const {boxes, user} = this.props;
+		console.log(user.name);
 		console.log(boxes);
+
 		return (
 			<div>
 			<h1>Welcome {user.name}</h1>
-			
+			<BoxesList boxes={boxes} />
 			</div>
 		);
 	}

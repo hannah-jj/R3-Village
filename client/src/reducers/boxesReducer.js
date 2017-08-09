@@ -4,7 +4,7 @@ export default (state = [], action) => {
       let boxes = action.boxes;
       let l = 9 - boxes.length;
       for (let i = 0; i < l; i++) {
-        boxes.push({box_id: null, item_name: "default", item_url: "default.jpg"})
+        boxes.push({box_id: null, item_name: "default", item_url: "/items/default.png"})
       }
   	  return boxes;	  
   	case 'ADD_BOX':
