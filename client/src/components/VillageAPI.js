@@ -1,6 +1,6 @@
 export default class VillageAPI {
-	static getUsers() {
-        return fetch('/api/users', {
+    static getInfo(url) {
+        return fetch(url, {
             method: "GET", 
             headers: {
                 'Accepts': 'application/json',
@@ -11,3 +11,4 @@ export default class VillageAPI {
         .catch(error => console.log(error))
     }
 }
+

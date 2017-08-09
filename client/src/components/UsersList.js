@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 
 const UsersList = ({ users }) => {
 	const renderUsers = users.map(user =>
-		<tr>
+		<tr key={user.id}>
 			<td>
 				<Link style={{ marginRight: '12px' }}
-			 	key={user.id}
 			 	to={`/users/${user.id}`}>{user.name}</Link>
 			</td>
 			<td>{user.happiness}</td>

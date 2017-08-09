@@ -4,17 +4,31 @@ function getUsersSuccess(users) {
   return {type: 'FETCH_USERS', users: users};
 }
 
-const fetchUsers = () => {
+function getUserSuccess(boxes) {
+  return {type: 'FETCH_BOXES', boxes: boxes};
+}
+
+const fetchUsers = (url) => {
   return function(dispatch) {
-    return VillageAPI.getUsers()
+    return VillageAPI.getInfo(url)
       .then(users => {
       dispatch(getUsersSuccess(users))
     })
   }
 }
 
+const fetchBoxes = (url) => {
+  return function(dispatch) {
+    return VillageAPI.getInfo(url)
+      .then(user => {
+      dispatch(getUserSuccess(user.active_boxes))
+    })
+  }
+}
+
+
 
 export {
-  getUsersSuccess,
-  fetchUsers
+  fetchUsers,
+  fetchBoxes
 }
