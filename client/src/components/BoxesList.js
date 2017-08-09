@@ -18,7 +18,7 @@ class BoxesList extends Component {
 
 	render() {
 		const renderBoxes = this.props.boxes.map((box, index) => 
-			<td key={index} onClick={this.handleClick}><Link to={'/games'}><img src={box.item_url} alt={box.item_name} /></Link></td>
+			<td key={index} onClick={this.handleClick}><Link to={`/games`}><img src={box.item_url} alt={box.item_name} /></Link></td>
 		);
 
 		return (

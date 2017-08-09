@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807182824) do
+ActiveRecord::Schema.define(version: 20170809162415) do
 
   create_table "boxes", force: :cascade do |t|
     t.boolean "active"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20170807182824) do
     t.boolean "trashed"
     t.integer "user_id"
     t.integer "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.text "name"
+    t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
