@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, NavLink, Route, Switch } from 'react-router-dom';
 import UsersPage from '../containers/UsersPage';
 import UsersNew from '../containers/UsersNew';
+import GamesPage from '../containers/GamesPage';
 
 const App = (props) => 
 	<Router>
@@ -15,6 +16,7 @@ const App = (props) =>
 				<Route exact path='/' component={UsersNew} />
 				<Route exact path='/users/new' component={UsersNew} />
 				<Route path="/users" component={UsersPage} />
+				<Route path="/games" component={GamesPage} />
 			</Switch>
 		</div>
 	</Router>
