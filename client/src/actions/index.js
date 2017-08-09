@@ -1,43 +1,42 @@
 import VillageAPI from './VillageAPI';
 
-function getUsersSuccess(users) {
-  return {type: 'FETCH_USERS', users: users};
+//success msgs and payloads for reducer
+function success(msg, payload) {
+  return {type: msg, payload: payload};
 }
 
-function getUserSuccess(boxes) {
-  return {type: 'FETCH_BOXES', boxes: boxes};
-}
-
-function addUserSuccess(users) {
-  return {type: 'ADD_USER', users: users};
-}
-
+//fetch users from users index api
 const fetchUsers = (url) => {
   return function(dispatch) {
     return VillageAPI.getInfo(url)
       .then(users => {
-      dispatch(getUsersSuccess(users))
+      dispatch(success('FETCH_USERS', users))
     })
   }
 }
 
+//fetch all the active boxes from an user
 const fetchBoxes = (url) => {
   return function(dispatch) {
     return VillageAPI.getInfo(url)
       .then(user => {
-      dispatch(getUserSuccess(user.active_boxes))
+      dispatch(success('FETCH_BOXES', user.active_boxes))
     })
   }
 }
 
+//add User
 const addUser = (url, name) => {
   return function(dispatch) {
     return VillageAPI.addUser(url, name)
       .then(users => {
-      dispatch(addUserSuccess(users))
+      dispatch(success('ADD_USER', users))
     })
   }
 }
+
+//FETCH_MATCH_ITEMS for Matching Game
+
 
 
 

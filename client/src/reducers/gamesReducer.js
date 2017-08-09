@@ -1,9 +1,9 @@
 export default (state = [], action) => {
   switch (action.type) {
-  	case 'FETCH_USERS':
-  	  return action.payload;  
+  	case 'FETCH_MATCH_ITEMS':
+  	  return action.gamepieces;  
   	case 'ADD_USER':
-  	  return action.payload; 
+  	  return action.games; 
     default:
       return state;
   }
