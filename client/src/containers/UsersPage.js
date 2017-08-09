@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import UsersList from '../components/UsersList'
-import UserShow from './UserShow'
-import UsersNew from './UsersNew'
-import * as actions from '../actions/index.js'
+import UsersList from '../components/UsersList';
+import UserShow from './UserShow';
+import UsersNew from './UsersNew';
+import * as actions from '../actions/index.js';
 
 
 class UsersPage extends Component {

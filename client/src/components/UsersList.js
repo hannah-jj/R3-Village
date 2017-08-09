@@ -1,4 +1,6 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import UserShow from '../containers/UserShow';
 import { Link } from 'react-router-dom';
 
 const UsersList = ({ users }) => {

@@ -2,31 +2,39 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import BoxesList from '../components/BoxesList'
-import * as actions from '../actions/index';
+import BoxesList from '../components/BoxesList';
+import UsersList from '../components/UsersList';
+import * as actions from '../actions/index.js';
 
 class UserShow extends Component {
 	componentDidMount(){
-		console.log("here")
 		this.props.actions.fetchBoxes(`/api/${this.props.match.url}`);
+	}
+	
+	componentDidUpdate(prevProps){
+		if (this.props.user !== prevProps.user) {
+			this.props.actions.fetchBoxes(`/api/${this.props.match.url}`);
+		}
 	}
 
 	render(){
+		console.log("in render");
+		
 		const {boxes, user} = this.props;
-		// console.log(`props is${this.props}`);
-		// console.log(`boxes is ${boxes}`);
+		console.log(boxes);
 		return (
 			<div>
-				<h2> Hi {user.name} Welcome to your room </h2>
+			<h1>Welcome {user.name}</h1>
+			
 			</div>
-			);
+		);
 	}
 }
 
 function mapStateToProps(state, ownProps) {
   const user = state.users.find(user => user.id == ownProps.match.params.userId);
   if(user) {
-  	return {boxes: state.boxes, user: user};
+  	return {user: user, boxes: state.boxes};
   } 
   else {
   	return { user: {} };
@@ -38,3 +46,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserShow);
+
+// <BoxesList boxes={boxes} />
