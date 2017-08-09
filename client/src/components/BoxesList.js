@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 
 
 class BoxesList extends Component {
-	constructor(props) {
-		super(props);
-	}
 
 	handleClick = event => {
 		if (event.target.alt !== "default"){

@@ -21,10 +21,6 @@ class MatchGame extends Component {
 		this.props.actions.fetchItems('/api/items');
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-
-	}
-
 	updateFlippedArray = (index1, index2 = -1) => {
 		var new_array = this.state.flipped;
 		if (index1 > -1) {
@@ -36,17 +32,12 @@ class MatchGame extends Component {
 		this.setState({flipped: new_array});
 	}
 
-	delayFlip = (index1, index2) => { this.updateFlippedArray(index1, index2);}
-
 	resetFirstClick = () => {
-		console.log("resetting first Click");
-		this.setState({firstClick: {status: false, card: "", index: 10}}, function () {
-    		console.log("resetFirstClick"); console.log(this.state)});
+		this.setState({firstClick: {status: false, card: "", index: 10}});
 	}
 
 	setFirstClick = (card_name, index) => {
-		this.setState({firstClick: {status: true, card: card_name, index: index}}, function () {
-    		console.log("setFirstclick"); console.log(this.state)});
+		this.setState({firstClick: {status: true, card: card_name, index: index}});
 	}
 
 	handleClick = event => {
@@ -54,13 +45,12 @@ class MatchGame extends Component {
 		//this line delays the flipping of unmatched cards from last round
 		this.setState({last_round: [-1, -1]});
 		//reset the state for unmatched cards from last round
-		
+
 		var t = event.target;
 		var clicked = t.getAttribute('data-key');
 		var card_name = t.alt;
 
 		if (this.state.flipped[clicked] === false ) { // if not already flipped go into action
-			console.log("flip over");
 			this.updateFlippedArray(clicked);
 
 			if (this.state.firstClick.status === false){ //first click
@@ -69,12 +59,9 @@ class MatchGame extends Component {
 			else { //if firstClick already happened
 				if (this.state.firstClick.card === card_name){
 					// do some animation later
-					console.log("matched!")
 					this.resetFirstClick();
 				}
 				else {
-					console.log("no match should cover them")
-					console.log(`1st click is ${this.state.firstClick.index} 2nd is ${clicked}`)
 					let index1 = this.state.firstClick.index;
 					this.resetFirstClick();
 					this.setState({last_round: [index1, clicked]});
@@ -82,9 +69,6 @@ class MatchGame extends Component {
 				}
 			}
 		}// end of main if
-
-		console.log("after")
-		console.log(this.state);
 	}
 
 
