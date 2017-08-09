@@ -10,7 +10,8 @@ class MatchGame extends Component {
 		super(props);
 		this.state = {
 			flipped: [false, false, false, false, false,false, false, false,false, false, false, false],
-			firstClick: {status: false, card: "", index: 10}
+			firstClick: {status: false, card: "", index: 10},
+			last_round: [-1, -1]
 		};
 
 		this.handleClick = this.handleClick.bind(this);
@@ -24,11 +25,18 @@ class MatchGame extends Component {
 
 	}
 
-	updateFlippedArray = (array, index, new_item) => {
-		var new_array = array;
-		new_array[index] = new_item;
+	updateFlippedArray = (index1, index2 = -1) => {
+		var new_array = this.state.flipped;
+		if (index1 > -1) {
+			new_array[index1] = !new_array[index1];
+		}
+		if (index2 > -1) {
+			new_array[index2] = !new_array[index2];
+		}
 		this.setState({flipped: new_array});
 	}
+
+	delayFlip = (index1, index2) => { this.updateFlippedArray(index1, index2);}
 
 	resetFirstClick = () => {
 		console.log("resetting first Click");
@@ -42,15 +50,18 @@ class MatchGame extends Component {
 	}
 
 	handleClick = event => {
-		console.log("before")
-		console.log(this.state);
+		this.updateFlippedArray(this.state.last_round[0], this.state.last_round[1]);
+		//this line delays the flipping of unmatched cards from last round
+		this.setState({last_round: [-1, -1]});
+		//reset the state for unmatched cards from last round
+		
 		var t = event.target;
 		var clicked = t.getAttribute('data-key');
 		var card_name = t.alt;
 
 		if (this.state.flipped[clicked] === false ) { // if not already flipped go into action
 			console.log("flip over");
-			this.updateFlippedArray(this.state.flipped, clicked, true);
+			this.updateFlippedArray(clicked);
 
 			if (this.state.firstClick.status === false){ //first click
 				this.setFirstClick(card_name, clicked);
@@ -64,9 +75,9 @@ class MatchGame extends Component {
 				else {
 					console.log("no match should cover them")
 					console.log(`1st click is ${this.state.firstClick.index} 2nd is ${clicked}`)
+					let index1 = this.state.firstClick.index;
 					this.resetFirstClick();
-					this.updateFlippedArray(this.state.flipped, this.state.firstClick.index, false);
-					this.updateFlippedArray(this.state.flipped, clicked, false);
+					this.setState({last_round: [index1, clicked]});
 
 				}
 			}
@@ -77,9 +88,10 @@ class MatchGame extends Component {
 	}
 
 
+	win = () => {return !this.state.flipped.includes(false)}
 
 	render(){
-		if (this.state.flipped.includes(false)) {
+		if (!this.win()) {
 			var renderGames = this.props.games.map((gamePiece, index) => {
 				if (this.state.flipped[index] === false) {
 				return (<div key={index} style={{display: 'inline-block', padding: 2}}>
@@ -95,7 +107,8 @@ class MatchGame extends Component {
 			);
 		}
 		else {
-			var renderGames = <div><h1>"YOU WON!"</h1><img style={{width: 820, display: 'inline-block'}} src='https://media.giphy.com/media/wl6l9trsOaktq/giphy.gif' alt='firework' /></div>;
+			// var renderGames = <div><h1>"YOU WON!"</h1><img style={{width: 820, display: 'inline-block'}} src='https://media.giphy.com/media/wl6l9trsOaktq/giphy.gif' alt='firework' /></div>;
+		var renderGames = <div><h1>"YOU WON!"</h1><img style={{width: 820, display: 'inline-block'}} src='won.jpg' alt='firework' /></div>;	
 		}
 
 		return (
