@@ -36,12 +36,19 @@ const addUser = (url, name) => {
 }
 
 //FETCH_MATCH_ITEMS for Matching Game
-
-
+const fetchItems = (url) => {
+  return function(dispatch) {
+    return VillageAPI.getInfo(url)
+      .then(items => {
+      dispatch(success('FETCH_MATCH_ITEMS', items))
+    })
+  }
+}
 
 
 export {
   fetchUsers,
   fetchBoxes,
-  addUser
+  addUser,
+  fetchItems
 }

@@ -6,17 +6,28 @@ import * as actions from '../actions/index';
 
 
 class MatchGame extends Component {
+	componentDidMount(){
+		this.props.actions.fetchItems('/api/items');
+	}
 	render(){
-	  return(
-		<div>
-			match game!
-		</div>
-	   )
+		const renderGames = this.props.games.map((gamePiece, index) => 
+			<td key={index} onClick={this.handleClick}>
+				<img src={gamePiece.picture} alt={gamePiece.name} />
+			</td>
+		);
+
+		return (
+			<div>
+				<table>
+					<tbody><tr>{renderGames}</tr></tbody>
+				</table>
+			</div>
+		);
 	}
 }
 
 function mapStateToProps(state) {
-	return { };
+	return { games: state.games};
 }
 
 function mapDispatchToProps(dispatch) {
