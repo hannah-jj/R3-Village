@@ -9,7 +9,6 @@ class MatchGame extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			win: false,
 			flipped: [false, false, false, false, false,false, false, false,false, false, false, false],
 			firstClick: {status: false, card: "", index: 10}
 		};
@@ -42,10 +41,6 @@ class MatchGame extends Component {
     		console.log("setFirstclick"); console.log(this.state)});
 	}
 
-	checkWin = () => {
-		
-	}
-
 	handleClick = event => {
 		console.log("before")
 		console.log(this.state);
@@ -70,8 +65,8 @@ class MatchGame extends Component {
 					console.log("no match should cover them")
 					console.log(`1st click is ${this.state.firstClick.index} 2nd is ${clicked}`)
 					this.resetFirstClick();
-					setTimeout(this.updateFlippedArray(this.state.flipped, clicked, false),2000);
-					setTimeout(this.updateFlippedArray(this.state.flipped, this.state.firstClick.index, false),2000);
+					this.updateFlippedArray(this.state.flipped, this.state.firstClick.index, false);
+					this.updateFlippedArray(this.state.flipped, clicked, false);
 
 				}
 			}
@@ -84,19 +79,24 @@ class MatchGame extends Component {
 
 
 	render(){
-		const renderGames = this.props.games.map((gamePiece, index) => {
-			if (this.state.flipped[index] === false) {
-			return (<div key={index} style={{display: 'inline-block', padding: 2}}>
-				<img data-key={index} onClick={this.handleClick} src='/defaults/default.png' alt={gamePiece.name} />
-			</div>)
-		} else {
-			return (<div key={index} onClick={this.handleClick} style={{display: 'inline-block', padding: 2}}>
-				<img data-key={index} src={gamePiece.picture} alt={gamePiece.name} />
-			</div>)
-		}
+		if (this.state.flipped.includes(false)) {
+			var renderGames = this.props.games.map((gamePiece, index) => {
+				if (this.state.flipped[index] === false) {
+				return (<div key={index} style={{display: 'inline-block', padding: 2}}>
+					<img data-key={index} onClick={this.handleClick} src='/defaults/default.png' alt={gamePiece.name} />
+				</div>)
+			} else {
+				return (<div key={index} onClick={this.handleClick} style={{display: 'inline-block', padding: 2}}>
+					<img data-key={index} src={gamePiece.picture} alt={gamePiece.name} />
+				</div>)
+			}
 
-}
-		);
+			}
+			);
+		}
+		else {
+			var renderGames = <div><h1>"YOU WON!"</h1><img style={{width: 820, display: 'inline-block'}} src='https://media.giphy.com/media/wl6l9trsOaktq/giphy.gif' alt='firework' /></div>;
+		}
 
 		return (
 			<div style={{width: 820, height: 620, backgroundColor: 'powderblue'}} >
