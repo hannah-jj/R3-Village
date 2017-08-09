@@ -11,7 +11,7 @@ import * as actions from '../actions/index.js';
 
 class UsersPage extends Component {
 	componentDidMount(){
-		this.props.actions.fetchUsers('/api/users')
+		this.props.actions.fetchUsers('/api/users');
 	}
 	render(){
 	  const {match, users} = this.props;

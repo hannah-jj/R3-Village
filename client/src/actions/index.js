@@ -1,4 +1,4 @@
-import VillageAPI from '../components/VillageAPI';
+import VillageAPI from './VillageAPI';
 
 function getUsersSuccess(users) {
   return {type: 'FETCH_USERS', users: users};

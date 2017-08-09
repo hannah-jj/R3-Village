@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import BoxesList from '../components/BoxesList';
-import UsersList from '../components/UsersList';
 import * as actions from '../actions/index.js';
 
 class UserShow extends Component {
@@ -21,12 +19,7 @@ class UserShow extends Component {
 
 
 	render(){
-		console.log("in render");
-		
 		const {boxes, user} = this.props;
-		console.log(user.name);
-		console.log(boxes);
-
 		return (
 			<div>
 			<h1>Welcome {user.name}</h1>
