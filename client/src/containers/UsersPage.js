@@ -18,11 +18,11 @@ class UsersPage extends Component {
 
 	  return(
 		<div>
-			<UsersList users={users} />
+			
 			<Switch>
 				<Route path={`${match.url}/new`} component={UsersNew} />
 				<Route path={`${match.url}/:userId`} component={UserShow} />
-				<Route exact path={match.url} render={() => (<h3> Please select a villager from the list.</h3>)}/>
+				<Route exact path={match.url} render={() => (<UsersList users={users} />)}/>
 			</Switch>
 		</div>
 	   )
