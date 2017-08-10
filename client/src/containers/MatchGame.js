@@ -82,8 +82,8 @@ class MatchGame extends Component {
 					<img data-key={index} onClick={this.handleClick} src='/defaults/default.png' alt={gamePiece.name} />
 				</div>)
 			} else {
-				return (<div key={index} onClick={this.handleClick} style={{display: 'inline-block', padding: 2}}>
-					<img data-key={index} src={gamePiece.picture} alt={gamePiece.name} />
+				return (<div key={index} style={{display: 'inline-block', padding: 2}}>
+					<img data-key={index}  onClick={this.handleClick}  src={gamePiece.picture} alt={gamePiece.name} />
 				</div>)
 			}
 

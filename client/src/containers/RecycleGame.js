@@ -9,9 +9,10 @@ class RecycleGame extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-		  seconds: 10,
-		  done: false,
-		  count: 0
+		  count: 32,
+		  firstClick: false,
+		  currentGame: '',
+		  hiddenPieces: []
 		};
 
 		this.handleClick = this.handleClick.bind(this);
@@ -21,24 +22,60 @@ class RecycleGame extends Component {
 		this.props.actions.fetchRItems('/api/ingredients');
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (this.state.firstClick === false ) {
+			this.setState({currentGame : nextProps.games[0].name});
+			console.log(this.state.currentGame);
+		}
+  		this.setState({games: nextProps.games});
+  	}
 
-	handleClick = event => {}
+
+	handleClick = event => {
+		var t = event.target;
+		var i = t.getAttribute('data-key');
+		
+		if (this.state.firstClick === false) {
+			this.setState ({firstClick: true});
+		}
+
+		if (t.alt == this.state.currentGame) {
+			var newHidden = this.state.hiddenPieces;
+			newHidden.push(i);
+			console.log(newHidden);
+			this.setState({hiddenPieces: newHidden, count: this.state.count-1});
+		}
+	}
 
 
 	render(){
-		console.log("game pieces")
-		console.log(this.props.games)
-		var renderGames = this.props.games.map((gamePiece, index) => {
-			return(
-			<div key={index} onClick={this.handleClick} style={{display: 'inline-block', padding: 1}}>
-				<img data-key={index} src={gamePiece.picture} alt={gamePiece.name} style={{width: 50, height: 50}}/>
-			</div>);
-		});
+		if (this.state.count > 0) {
+			var games = this.props.games;
+			var renderGames = games.map((gamePiece, index) => {
+				return(
+				<div key={index} style={{display: 'inline-block', padding: 1}} className={this.state.hiddenPieces.includes(index.toString())? 'hidden' : ''}>
+					<img data-key={index} src={gamePiece.picture}  onClick={this.handleClick} 
+					alt={gamePiece.name} style={{width: 50, height: 50}}
+					className={this.state.hiddenPieces.includes(index.toString())? 'hidden' : ''}
+					/>
+				</div>);
+			});
+
+			if (games.length > 0) {
+				var currentGame = <div style={{display: 'inline-block'}}><img src={games[0].picture} alt={games[0].name} style={{width: 50, height: 50}}/> ? </div>
+			} else {
+				var currentGame ="";
+			}
+		} else {
+			var renderGames = <div><h1>"Thank you for recycling!!!"</h1><img style={{width: 820, display: 'inline-block'}} src='won.jpg' alt='firework' /></div>;	
+		}
 
 		return (
+		  <div>can you recycle all the {currentGame} count <strong>{this.state.count}</strong>
 			<div style={{width: 835, height: 670, backgroundColor: 'powderblue'}} >
 				{renderGames}
 			</div>
+		  </div>
 		);
 	};
 }
@@ -52,3 +89,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecycleGame);
+
+
