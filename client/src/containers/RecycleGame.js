@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/index';
-import * as arrayActions from '../actions/arrayMutater';
+
+import WinMsg from '../components/winMsg';
 
 
 class RecycleGame extends Component {
@@ -25,7 +26,6 @@ class RecycleGame extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (this.state.firstClick === false ) {
 			this.setState({currentGame : nextProps.games[0].name});
-			console.log(this.state.currentGame);
 		}
   		this.setState({games: nextProps.games});
   	}
@@ -39,10 +39,9 @@ class RecycleGame extends Component {
 			this.setState ({firstClick: true});
 		}
 
-		if (t.alt == this.state.currentGame) {
+		if (t.alt === this.state.currentGame) {
 			var newHidden = this.state.hiddenPieces;
 			newHidden.push(i);
-			console.log(newHidden);
 			this.setState({hiddenPieces: newHidden, count: this.state.count-1});
 		}
 	}
@@ -53,10 +52,10 @@ class RecycleGame extends Component {
 			var games = this.props.games;
 			var renderGames = games.map((gamePiece, index) => {
 				return(
-				<div key={index} style={{display: 'inline-block', padding: 1}} className={this.state.hiddenPieces.includes(index.toString())? 'hidden' : ''}>
-					<img data-key={index} src={gamePiece.picture}  onClick={this.handleClick} 
-					alt={gamePiece.name} style={{width: 50, height: 50}}
-					className={this.state.hiddenPieces.includes(index.toString())? 'hidden' : ''}
+				<div key={index} className='gameBlock'>
+					<img data-key={index} src={gamePiece.picture}  onClick={this.handleClick}  
+					alt={gamePiece.name}
+					className={this.state.hiddenPieces.includes(index.toString())? 'hidden smallGame' : 'smallGame'}
 					/>
 				</div>);
 			});
@@ -66,17 +65,20 @@ class RecycleGame extends Component {
 			} else {
 				var currentGame ="";
 			}
-		} else {
-			var renderGames = <div><h1>"Thank you for recycling!!!"</h1><img style={{width: 820, display: 'inline-block'}} src='won.jpg' alt='firework' /></div>;	
+
+			return (
+			  <div>can you recycle all the {currentGame} count <strong>{this.state.count}</strong>
+				<div style={{width: 835, height: 670, backgroundColor: 'powderblue'}} >
+					{renderGames}
+				</div>
+			  </div>
+			);
+
+		} 	else {		
+			return <WinMsg msg={'Recycling the toy'} />;	
 		}
 
-		return (
-		  <div>can you recycle all the {currentGame} count <strong>{this.state.count}</strong>
-			<div style={{width: 835, height: 670, backgroundColor: 'powderblue'}} >
-				{renderGames}
-			</div>
-		  </div>
-		);
+
 	};
 }
 

@@ -15,15 +15,12 @@ class UserShow extends Component {
 		}
 	}
 
-
-
-
 	render(){
 		const {boxes, user} = this.props;
 		return (
 			<div>
 			<h1>Welcome {user.name}</h1>
-			<BoxesList boxes={boxes} />
+			<BoxesList boxes={boxes}/>
 			</div>
 		);
 	}

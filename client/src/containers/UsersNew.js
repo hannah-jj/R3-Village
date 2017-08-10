@@ -15,7 +15,9 @@ class UsersNew extends Component {
 
 	handleOnSubmit = event => {
 		event.preventDefault();
-		this.props.actions.addUser('/api/users', this.state.name);
+		let userName = this.state.name;
+		userName = userName == '' ? "guest" : userName;
+		this.props.actions.addUser('/api/users', userName);
 		this.setState({redirect: true});
 	}
 

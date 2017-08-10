@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/index';
+import WinMsg from '../components/winMsg';
 
 
 class MatchGame extends Component {
@@ -78,28 +79,24 @@ class MatchGame extends Component {
 		if (!this.win()) {
 			var renderGames = this.props.games.map((gamePiece, index) => {
 				if (this.state.flipped[index] === false) {
-				return (<div key={index} style={{display: 'inline-block', padding: 2}}>
+				return (<div key={index} className='gameBlock'>
 					<img data-key={index} onClick={this.handleClick} src='/defaults/default.png' alt={gamePiece.name} />
 				</div>)
 			} else {
-				return (<div key={index} style={{display: 'inline-block', padding: 2}}>
+				return (<div key={index} className='gameBlock'>
 					<img data-key={index}  onClick={this.handleClick}  src={gamePiece.picture} alt={gamePiece.name} />
 				</div>)
 			}
 
 			}
 			);
+			return <div>{renderGames}</div>
 		}
-		else {
-			// var renderGames = <div><h1>"YOU WON!"</h1><img style={{width: 820, display: 'inline-block'}} src='https://media.giphy.com/media/wl6l9trsOaktq/giphy.gif' alt='firework' /></div>;
-		var renderGames = <div><h1>"YOU WON!"</h1><img style={{width: 820, display: 'inline-block'}} src='won.jpg' alt='firework' /></div>;	
+		else {		
+			return <WinMsg msg={'Reusing the toy'} />;	
 		}
 
-		return (
-			<div style={{width: 820, height: 620, backgroundColor: 'powderblue'}} >
-				{renderGames}
-			</div>
-		);
+		
 	}
 }
 
@@ -112,3 +109,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MatchGame);
+
+// return (
+// 			<div style={{width: 810, height: 620, backgroundColor: 'powderblue'}} >
+// 				{renderGames}
+// 			</div>
+// 		);

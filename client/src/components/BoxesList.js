@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
-class BoxesList extends Component {
+export default class BoxesList extends Component {
 
 	handleClick = event => {
 		if (event.target.alt !== "default"){
@@ -27,6 +26,3 @@ class BoxesList extends Component {
 		);
 	}
 };
-
-
-export default BoxesList;
