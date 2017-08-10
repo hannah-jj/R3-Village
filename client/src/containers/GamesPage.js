@@ -1,29 +1,29 @@
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../actions/index';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import MatchGame from './MatchGame';
+import RecycleGame from './RecycleGame';
 
 
-class UsersPage extends Component {
+class GamesPage extends Component {
 
 	render(){
 
 	  return(
-		<div>
-			<MatchGame />
-		</div>
+		<Router>
+			<Switch>
+				<Route path='/matchGame' component={MatchGame} />
+				<Route path='/recycleGame' component={RecycleGame} />
+				<Route exact path='/Games' render = {() => 
+					<div>
+						<Link style={{ marginRight: '12px' }} to={'/matchGame'}>Reuse The Toy</Link>
+	          			<Link style={{ marginRight: '12px' }} to={'/recycleGame'}>Recycle The Toy</Link>
+	          		</div>
+	      		}/>
+			</Switch>
+		</Router>
 	   )
 	}
 }
 
-function mapStateToProps(state) {
-	return { };
-}
-
-function mapDispatchToProps(dispatch) {
-	return {actions: bindActionCreators(actions, dispatch)};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);
+export default GamesPage;
