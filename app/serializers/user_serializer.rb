@@ -7,8 +7,8 @@ class UserSerializer < ActiveModel::Serializer
   	boxes.each do |box|
   		box_hash = {}
   		box_hash[:box_id] = box.id
-  		box_hash[:item_name] = box.item.name
-  		box_hash[:item_url] = box.item.picture
+  		box_hash[:name] = box.item.name
+  		box_hash[:picture] = box.item.picture
   		results << box_hash
   	end
   	results
