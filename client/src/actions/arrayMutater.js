@@ -17,14 +17,10 @@ function shuffle (array) {
 
 //n = numbers of sets to generate
 function populateArray (oneSet, n){
-
-	// return doubleNShuffle(oneSet);
 	var gamePieces = oneSet;
-	console.log(`oneSet length: ${oneSet.length}`)
 	for (let i = 0; i < n-1; i++) {
 		gamePieces = gamePieces.concat(oneSet);
 	}
-    console.log(gamePieces);
 	return shuffle(gamePieces);
 }
 

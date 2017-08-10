@@ -11,8 +11,7 @@ class RecycleGame extends Component {
 		this.state = {
 		  seconds: 10,
 		  done: false,
-		  count: 0,
-		  gamePieces: []
+		  count: 0
 		};
 
 		this.handleClick = this.handleClick.bind(this);
