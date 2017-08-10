@@ -45,10 +45,21 @@ const fetchItems = (url) => {
   }
 }
 
+//FETCH_RECYCLE_ITEMS for RECYCLE Game
+const fetchRItems = (url) => {
+  return function(dispatch) {
+    return VillageAPI.getInfo(url)
+      .then(items => {
+      dispatch(success('FETCH_RECYCLE_ITEMS', items))
+    })
+  }
+}
+
 
 export {
   fetchUsers,
   fetchBoxes,
   addUser,
-  fetchItems
+  fetchItems,
+  fetchRItems
 }
