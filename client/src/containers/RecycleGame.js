@@ -19,7 +19,7 @@ class RecycleGame extends Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	componentDidMount(){
+	componentWillMount(){
 		this.props.actions.fetchRItems('/api/ingredients');
 	}
 
@@ -52,25 +52,23 @@ class RecycleGame extends Component {
 			var games = this.props.games;
 			var renderGames = games.map((gamePiece, index) => {
 				return(
-				<div key={index} className='gameBlock'>
-					<img data-key={index} src={gamePiece.picture}  onClick={this.handleClick}  
+				
+					<img key={index} data-key={index} src={gamePiece.picture}  onClick={this.handleClick}  
 					alt={gamePiece.name}
 					className={this.state.hiddenPieces.includes(index.toString())? 'hidden smallGame' : 'smallGame'}
 					/>
-				</div>);
+				);
 			});
 
 			if (games.length > 0) {
-				var currentGame = <div style={{display: 'inline-block'}}><img src={games[0].picture} alt={games[0].name} style={{width: 50, height: 50}}/> ? </div>
+				var currentGame = <div style={{display: 'inline-block'}}><img src={games[0].picture} alt={games[0].name} style={{width: 100, height: 100}}/></div>
 			} else {
 				var currentGame ="";
 			}
 
 			return (
-			  <div>can you recycle all the {currentGame} count <strong>{this.state.count}</strong>
-				<div style={{width: 835, height: 670, backgroundColor: 'powderblue'}} >
-					{renderGames}
-				</div>
+			  <div><h1>Recycle {currentGame} count <strong>{this.state.count}</strong></h1>
+				{renderGames}
 			  </div>
 			);
 

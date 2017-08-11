@@ -1,28 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default class BoxesList extends Component {
+const BoxesList = ({handleChange, boxes, currentClick}) => {
 
-	handleClick = event => {
-		if (event.target.alt !== "default"){
-			console.log("this box is full");
+	var renderBoxes = boxes.map((box, index) => {
+		console.log(`index is ${index} currentClick=${currentClick}`);
+		if (currentClick == index) {
+			if (box.name == 'default'){
+				return <div key={index} style={{width: 200, backgroundColor: 'powderblue'}}className='gameBlock'>					
+					Buy New Toy or Learn something new
+	          		</div>
+			} else {
+				return <div key={index} style={{width: 200, backgroundColor: 'powderblue'}}className='gameBlock'>					
+						<Link style={{ marginRight: '12px' }} to={'/matchGame'}>Reuse The Toy</Link>
+		          		<Link style={{ marginRight: '12px' }} to={'/recycleGame'}>Recycle The Toy</Link>
+		          		</div>
+	         }
 		} else {
-			console.log("this box is empty");
+			return <div key={index} className='gameBlock'> <img onClick={handleChange} src={box.picture} alt={box.name} data-key={index} /></div>
 		}
-	}
+	});
 
-
-	render() {
-		const renderBoxes = this.props.boxes.map((box, index) => 
-			<td key={index} onClick={this.handleClick}><Link to={`/games`}><img src={box.picture} alt={box.name} /></Link></td>
-		);
-
-		return (
-			<div>
-				<table>
-					<tbody><tr>{renderBoxes}</tr></tbody>
-				</table>
-			</div>
-		);
-	}
+	return <div> {renderBoxes} </div>
 };
+
+BoxesList.defaultProps = {
+  handleClickCallback: function() {}
+};
+
+export default BoxesList;

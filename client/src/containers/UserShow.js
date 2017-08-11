@@ -5,7 +5,16 @@ import BoxesList from '../components/BoxesList';
 import * as actions from '../actions/index.js';
 
 class UserShow extends Component {
-	componentDidMount(){
+	constructor(props) {
+		super(props);
+		this.state = {
+			currentClick: -1
+		};
+
+		this.handleClickCallback = this.handleClickCallback.bind(this);
+	}
+
+	componentWillMount(){
 		this.props.actions.fetchBoxes(`/api/${this.props.match.url}`);
 	}
 
@@ -15,12 +24,24 @@ class UserShow extends Component {
 		}
 	}
 
+	handleClickCallback(e){
+		let t = e.target;
+		this.setState({currentClick: t.getAttribute('data-key')});
+		console.log(`in callback ${t}`);
+	}
+
 	render(){
 		const {boxes, user} = this.props;
+		// const renderBoxes = this.props.boxes.map((box, index) => 
+		// 	<div key={index} className='gameBlock' >
+				
+		// 	</div>
+		// );
+
 		return (
 			<div>
-			<h1>Welcome {user.name}</h1>
-			<BoxesList boxes={boxes}/>
+			<h1>Welcome {user.name}<strong style={{color: "purple"}}> &hearts; {user.happiness} &#128465; {user.pollution}</strong></h1>
+			<BoxesList boxes={boxes} handleChange={this.handleClickCallback.bind(this)} currentClick={this.state.currentClick}/>
 			</div>
 		);
 	}

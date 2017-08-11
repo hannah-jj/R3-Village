@@ -18,7 +18,7 @@ class MatchGame extends Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	componentDidMount(){
+	componentWillMount(){
 		this.props.actions.fetchItems('/api/items');
 	}
 
