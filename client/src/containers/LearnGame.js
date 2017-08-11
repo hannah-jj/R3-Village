@@ -9,6 +9,7 @@ class LearnGame extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			start: 'count bumblebee!',
 			question: 0,
 			answers: [],
 			qArray: [],
@@ -41,7 +42,9 @@ class LearnGame extends Component {
 		var t = event.target;
 		var clickedAnswer = this.state.answers[t.getAttribute('data-key')];
 		if (clickedAnswer == this.state.question) {
-			this.setState({win: true})
+			this.setState({win: true});
+		} else {
+			this.setState({start: 'TRY AGAIN'});
 		}
 	}
 
@@ -59,14 +62,14 @@ class LearnGame extends Component {
 
 			return (
 				<div>
-					<h1>click the correct answer</h1>
+					<h1>{this.state.start}</h1>
 					<div className='learnBlock'>{renderQ}</div>
-					<div className='learnBlock'>{renderA}</div>
+					<div>{renderA}</div>
 				</div>
 			)
 		} else {
 			return <div>
-						<h1><Link style={{ marginRight: '12px' }} to={'/games'}>Play Again</Link></h1>
+						<h1><Link style={{ marginRight: '12px' }} to={'/games'}>Play Any Games Again</Link></h1>
 						<WinMsg msg={'Reducing the pollution'} />
 					</div>
 		}
