@@ -25,5 +25,21 @@ export default class VillageAPI {
         .then(response => response.json())
         .catch(error => console.log(error))
     }
+
+    static updateUser(url, info) {
+        return fetch(url, {
+            method: "PATCH", 
+            headers: {
+                'Accepts': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+               pollution : info.pollution,
+               happiness : info.happiness
+            })
+        })
+        .then(response => response.json())
+        .catch(error => console.log(error))
+    }
 }
 

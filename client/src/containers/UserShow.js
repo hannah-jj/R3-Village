@@ -15,19 +15,26 @@ class UserShow extends Component {
 	}
 
 	componentWillMount(){
-		this.props.actions.fetchBoxes(`/api/${this.props.match.url}`);
+		this.props.actions.fetchBoxes(`/api${this.props.match.url}`);
 	}
 
 	componentDidUpdate(prevProps){
 		if (this.props.user !== prevProps.user) {
-			this.props.actions.fetchBoxes(`/api/${this.props.match.url}`);
+			this.props.actions.fetchBoxes(`/api${this.props.match.url}`);
 		}
 	}
 
 	handleClickCallback(e){
 		let t = e.target;
 		this.setState({currentClick: t.getAttribute('data-key')});
-		console.log(`in callback ${t}`);
+	}
+
+
+	handleActionCallback = event => {
+		let oldInfo = this.props.user;
+		let updatedInfo = { happiness: oldInfo.happiness + 5 };
+		let url = `/api${this.props.match.url}`;
+		this.props.actions.updateUser(url, updatedInfo);
 	}
 
 	render(){
@@ -35,7 +42,8 @@ class UserShow extends Component {
 		return (
 			<div>
 			<h1>Welcome {user.name}<strong style={{color: "purple"}}> &hearts; {user.happiness} &#128465; {user.pollution}</strong></h1>
-			<BoxesList boxes={boxes} handleChange={this.handleClickCallback.bind(this)} currentClick={this.state.currentClick}/>
+			<BoxesList boxes={boxes} handleChange={this.handleClickCallback.bind(this)} 
+				handleReduce={this.handleActionCallback.bind(this)} currentClick={this.state.currentClick}/>
 			</div>
 		);
 	}

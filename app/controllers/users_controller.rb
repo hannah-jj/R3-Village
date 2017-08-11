@@ -18,7 +18,8 @@ class UsersController < ApplicationController
 
 	def update
 		@user.update(user_params)
-		render json: @user
+		@users = User.all
+		render json: @users, each_serializer: UsersSerializer
 	end
 
 

@@ -25,7 +25,17 @@ const fetchBoxes = (url) => {
   }
 }
 
-//add User
+//add User, API will return all users info
+const updateUser = (url, info) => {
+  return function(dispatch) {
+    return VillageAPI.updateUser(url, info)
+      .then(users => {
+      dispatch(success('FETCH_USER', users))
+    })
+  }
+}
+
+//update User
 const addUser = (url, name) => {
   return function(dispatch) {
     return VillageAPI.addUser(url, name)
@@ -60,6 +70,7 @@ export {
   fetchUsers,
   fetchBoxes,
   addUser,
+  updateUser,
   fetchItems,
   fetchRItems
 }
