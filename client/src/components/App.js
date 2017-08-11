@@ -4,6 +4,8 @@ import UsersPage from '../containers/UsersPage';
 import UsersNew from '../containers/UsersNew';
 import MatchGame from '../containers/MatchGame';
 import RecycleGame from '../containers/RecycleGame';
+import LearnGame from '../containers/LearnGame';
+import GamesPage from '../containers/GamesPage';
 
 const App = (props) => 
 	<Router>
@@ -17,8 +19,10 @@ const App = (props) =>
 				<Route exact path='/' component={UsersNew} />
 				<Route exact path='/users/new' component={UsersNew} />
 				<Route path="/users" component={UsersPage} />
-					<Route path='/matchGame' component={MatchGame} />
+				<Route path='/matchGame' component={MatchGame} />
 				<Route path='/recycleGame' component={RecycleGame} />
+				<Route path='/learnGame' component={LearnGame} />
+				<Route path='/Games' component={GamesPage} />
 			</Switch>
 		</div>
 	</Router>

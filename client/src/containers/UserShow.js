@@ -32,12 +32,6 @@ class UserShow extends Component {
 
 	render(){
 		const {boxes, user} = this.props;
-		// const renderBoxes = this.props.boxes.map((box, index) => 
-		// 	<div key={index} className='gameBlock' >
-				
-		// 	</div>
-		// );
-
 		return (
 			<div>
 			<h1>Welcome {user.name}<strong style={{color: "purple"}}> &hearts; {user.happiness} &#128465; {user.pollution}</strong></h1>

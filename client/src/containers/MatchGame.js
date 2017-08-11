@@ -109,9 +109,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MatchGame);
-
-// return (
-// 			<div style={{width: 810, height: 620, backgroundColor: 'powderblue'}} >
-// 				{renderGames}
-// 			</div>
-// 		);

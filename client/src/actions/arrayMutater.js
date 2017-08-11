@@ -24,8 +24,28 @@ function populateArray (oneSet, n){
 	return shuffle(gamePieces);
 }
 
+//fill up an array with sequential number for each index
+function fillArray (n){
+	var array = [];
+	for (let i= 0; i < n; i++){
+		array.push(i);
+	}
+	return array;
+}
+
+function generateGameNum (n, notN = 0){
+		var num = 0;
+		while (num === 0 || num === notN) {
+			num = Math.floor(Math.random() * (n+1) );
+		}
+		return num;
+	}
+
 export {
 	doubleNShuffle,
 	shuffle,
-	populateArray
+	populateArray,
+	generateGameNum,
+	fillArray
 }
+

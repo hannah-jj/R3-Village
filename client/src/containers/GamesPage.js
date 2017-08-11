@@ -1,27 +1,16 @@
 
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import MatchGame from './MatchGame';
-import RecycleGame from './RecycleGame';
-
+import { Link } from 'react-router-dom';
 
 class GamesPage extends Component {
 
 	render(){
-
 	  return(
-		<Router>
-			<Switch>
-				<Route path='/matchGame' component={MatchGame} />
-				<Route path='/recycleGame' component={RecycleGame} />
-				<Route exact path='/Games' render = {() => 
-					<div>
-						<Link style={{ marginRight: '12px' }} to={'/matchGame'}>Reuse The Toy</Link>
-	          			<Link style={{ marginRight: '12px' }} to={'/recycleGame'}>Recycle The Toy</Link>
-	          		</div>
-	      		}/>
-			</Switch>
-		</Router>
+			<div>
+				<Link style={{ marginRight: '12px' }} to={'/matchGame'}>Reuse a toy</Link>
+      			<Link style={{ marginRight: '12px' }} to={'/recycleGame'}>Recycle a toy</Link>
+      			<Link style={{ marginRight: '12px' }} to={'/learnGame'}>Reduce pollution</Link>
+      		</div>
 	   )
 	}
 }

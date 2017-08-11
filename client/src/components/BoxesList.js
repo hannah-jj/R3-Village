@@ -8,7 +8,7 @@ const BoxesList = ({handleChange, boxes, currentClick}) => {
 		if (currentClick == index) {
 			if (box.name == 'default'){
 				return <div key={index} style={{width: 200, backgroundColor: 'powderblue'}}className='gameBlock'>					
-					Buy New Toy or Learn something new
+					Buy New Toy or <Link style={{ marginRight: '12px' }} to={'/learnGame'}>Learn Something New</Link>
 	          		</div>
 			} else {
 				return <div key={index} style={{width: 200, backgroundColor: 'powderblue'}}className='gameBlock'>					
