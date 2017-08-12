@@ -117,7 +117,7 @@ function mapStateToProps(state, ownProps) {
   	return {user: user, boxes: state.boxes, items: state.games};
   } 
   else {
-  	return { user: {} };
+  	return { user: {}, boxes: [], items: [] };
   }
 };
 
