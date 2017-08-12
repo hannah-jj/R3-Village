@@ -5,7 +5,8 @@ import UsersNew from '../containers/UsersNew';
 import MatchGame from '../containers/MatchGame';
 import RecycleGame from '../containers/RecycleGame';
 import LearnGame from '../containers/LearnGame';
-import GamesPage from '../components/GamesPage';
+import GamesPage from './GamesPage';
+import TrashMsg from './Trash';
 
 const App = (props) => 
 	<Router>
@@ -23,6 +24,7 @@ const App = (props) =>
 				<Route path='/recycleGame' component={RecycleGame} />
 				<Route path='/learnGame' component={LearnGame} />
 				<Route path='/Games' component={GamesPage} />
+				<Route path='/Trash' component={TrashMsg} />
 			</Switch>
 		</div>
 	</Router>

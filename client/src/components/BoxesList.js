@@ -11,8 +11,9 @@ const BoxesList = ({handleChange, boxes, currentClick, handleAction}) => {
 	          		</div>
 			} else {
 				return <div key={index} style={{width: 200, backgroundColor: 'powderblue'}}className='gameBlock'>					
-						<Link style={{ marginRight: '12px' }} to={'/matchGame'} onClick={handleAction}>Reuse The Toy</Link>
-		          		<Link style={{ marginRight: '12px' }} to={'/recycleGame'} onClick={handleAction}>Recycle The Toy</Link>
+						<Link style={{ marginRight: '12px' }} to={'/matchGame'} onClick={handleAction}>Reuse</Link>
+		          		<Link style={{ marginRight: '12px' }} to={'/recycleGame'} onClick={handleAction}>Recycle</Link>
+		          		<Link style={{ marginRight: '12px' }} to={'/Trash'} onClick={handleAction}>Trash</Link>
 		          		</div>
 	         }
 		} else {

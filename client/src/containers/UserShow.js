@@ -41,7 +41,7 @@ class UserShow extends Component {
 		 matchGame: {p: 0, h: 5}, //reuse
 		 recycleGame: {p: 3, h: 3}, //recycle
 		 addToy: {p: 3, h: 3},
-		 trash: {p: 5, h: 0}};
+		 Trash: {p: 5, h: 0}};
 
 		let oldInfo = this.props.user;
 		let updatedInfo = { happiness: oldInfo.happiness + scores[actionItem].h,
