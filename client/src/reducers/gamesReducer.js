@@ -6,6 +6,8 @@ export default (state = [], action) => {
   	  return arrayMutater.doubleNShuffle(action.payload);
     case 'FETCH_RECYCLE_ITEMS':
       return arrayMutater.populateArray(action.payload, 32);
+    case 'FETCH_TOY_ITEMS':
+      return action.payload; 
     default:
       return state;
   }

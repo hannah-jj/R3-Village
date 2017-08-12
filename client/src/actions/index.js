@@ -25,12 +25,32 @@ const fetchBoxes = (url) => {
   }
 }
 
+//add box
+const addBox = (url, info) => {
+  return function(dispatch) {
+    return VillageAPI.addInfo(url, info)
+      .then(user => { 
+      dispatch(success('FETCH_BOXES', user.active_boxes))
+    })
+  }
+}
+
 //update box and fetch all the active boxes from an user
 const updateBox = (url, info) => {
   return function(dispatch) {
     return VillageAPI.updateInfo(url, info)
       .then(user => {
       dispatch(success('FETCH_BOXES', user.active_boxes))
+    })
+  }
+}
+
+//add User
+const addUser = (url, info) => {
+  return function(dispatch) {
+    return VillageAPI.addInfo(url, info)
+      .then(users => {
+      dispatch(success('ADD_USER', users))
     })
   }
 }
@@ -45,12 +65,12 @@ const updateUser = (url, info) => {
   }
 }
 
-//add User
-const addUser = (url, name) => {
+//FETCH_TOY_ITEMS for adding new toy
+const fetchToyItems = (url) => {
   return function(dispatch) {
-    return VillageAPI.addInfo(url, name)
-      .then(users => {
-      dispatch(success('ADD_USER', users))
+    return VillageAPI.getInfo(url)
+      .then(items => {
+      dispatch(success('FETCH_TOY_ITEMS', items))
     })
   }
 }
@@ -80,8 +100,10 @@ export {
   fetchUsers,
   fetchBoxes,
   updateBox,
+  addBox,
   addUser,
   updateUser,
+  fetchToyItems,
   fetchItems,
   fetchRItems
 }

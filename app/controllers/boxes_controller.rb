@@ -12,7 +12,9 @@ class BoxesController < ApplicationController
 
 	def create
 		@box = Box.create(box_params)
-		render json: @box
+		@user = @box.user
+		@user.update(happiness: @user.happiness+3, pollution: @user.pollution+3)
+		render json: @box.user, each_serializer: UserSerializer
 	end
 
 	def update
@@ -28,6 +30,6 @@ class BoxesController < ApplicationController
 
 	def box_params
 		params.require(:box).permit(
-			:active, :reuse, :recycled, :trashed)
+			:active, :reuse, :recycled, :trashed, :user_id, :item_id)
 	end
 end
