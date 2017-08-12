@@ -17,7 +17,7 @@ class UsersNew extends Component {
 		event.preventDefault();
 		let userName = this.state.name;
 		userName = userName == '' ? "guest" : userName;
-		this.props.actions.addUser('/api/users', userName);
+		this.props.actions.addUser('/api/users', {name: userName});
 		this.setState({redirect: true});
 	}
 

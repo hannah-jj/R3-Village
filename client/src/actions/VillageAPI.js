@@ -11,32 +11,27 @@ export default class VillageAPI {
         .catch(error => console.log(error))
     }
 
-    static addUser(url, name) {
+    static addInfo(url, info) {
         return fetch(url, {
             method: "POST", 
             headers: {
                 'Accepts': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                name: name
-            })
+            body: JSON.stringify( info )
         })
         .then(response => response.json())
         .catch(error => console.log(error))
     }
 
-    static updateUser(url, info) {
+    static updateInfo(url, info) {
         return fetch(url, {
             method: "PATCH", 
             headers: {
                 'Accepts': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-               pollution : info.pollution,
-               happiness : info.happiness
-            })
+            body: JSON.stringify(info)
         })
         .then(response => response.json())
         .catch(error => console.log(error))
