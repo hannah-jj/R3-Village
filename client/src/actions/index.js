@@ -25,7 +25,17 @@ const fetchBoxes = (url) => {
   }
 }
 
-//add User, API will return all users info
+//update box and fetch all the active boxes from an user
+const updateBox = (url, info) => {
+  return function(dispatch) {
+    return VillageAPI.updateInfo(url, info)
+      .then(user => {
+      dispatch(success('FETCH_BOXES', user.active_boxes))
+    })
+  }
+}
+
+//update User, API will return all users info
 const updateUser = (url, info) => {
   return function(dispatch) {
     return VillageAPI.updateInfo(url, info)
@@ -35,7 +45,7 @@ const updateUser = (url, info) => {
   }
 }
 
-//update User
+//add User
 const addUser = (url, name) => {
   return function(dispatch) {
     return VillageAPI.addInfo(url, name)
@@ -69,6 +79,7 @@ const fetchRItems = (url) => {
 export {
   fetchUsers,
   fetchBoxes,
+  updateBox,
   addUser,
   updateUser,
   fetchItems,

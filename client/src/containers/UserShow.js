@@ -31,8 +31,10 @@ class UserShow extends Component {
 
 
 	handleActionCallback = e => {
-		let actionItem = e.target.getAttribute('href');
-		//5 different possibilities /learnGame /matchGame /recycleGame /trash /addToy
+		let t = e.target;
+		let boxId = t.getAttribute('data-key');
+		let actionItem = t.getAttribute('href');
+		//5 different possibilities /learnGame /matchGame /recycleGame /Trash /addToy
 		actionItem = actionItem.substr(1);
 
 		//p for pollution h for happiness
@@ -46,8 +48,24 @@ class UserShow extends Component {
 		let oldInfo = this.props.user;
 		let updatedInfo = { happiness: oldInfo.happiness + scores[actionItem].h,
 		 pollution: oldInfo.pollution + scores[actionItem].p};
-		let url = `/api${this.props.match.url}`;
-		this.props.actions.updateUser(url, updatedInfo);
+		let userUrl = `/api${this.props.match.url}`;
+
+		this.props.actions.updateUser(userUrl, updatedInfo);
+
+		let updateBoxInfo = {};
+		let clickedBox = this.state.currentClick;
+		if (actionItem === 'recycleGame'){
+			updateBoxInfo = { active: false, recycled: true};
+		} else if (actionItem === 'Trash') {
+			updateBoxInfo = { active: false, trashed: true};
+		} else if (actionItem === 'matchGame') {
+			updateBoxInfo = { reuse: this.props.boxes[clickedBox].reuse + 1};
+		}
+
+		console.log(updateBoxInfo);
+
+		let boxUrl = `/api/boxes/${boxId}`;
+		this.props.actions.updateBox(boxUrl, updateBoxInfo);
 	}
 
 	render(){
