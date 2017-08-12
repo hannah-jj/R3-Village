@@ -5,7 +5,7 @@ import UsersNew from '../containers/UsersNew';
 import MatchGame from '../containers/MatchGame';
 import RecycleGame from '../containers/RecycleGame';
 import LearnGame from '../containers/LearnGame';
-import GamesPage from '../containers/GamesPage';
+import GamesPage from '../components/GamesPage';
 
 const App = (props) => 
 	<Router>
