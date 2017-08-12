@@ -1,21 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewToy}) => {
 
 	var renderBoxes = boxes.map((box, index) => {
 		if (currentClick == index) {
 			if (box.name == 'default'){
-				return <div key={index} style={{width: 200, backgroundColor: 'powderblue'}}className='gameBlock'>					
-					<p><button onClick={handleNewToy} >Add a Toy</button></p>
-					<Link to={'/learnGame'} onClick={handleAction}>Learn Something New</Link>
+				return <div key={index} style={{width: 200}}className='gameBlock'>					
+					<Button onClick={handleNewToy} >Add a Toy</Button>
+					<Button ><Link to={'/learnGame'} onClick={handleAction}>Play</Link></Button>
 	          		</div>
 			} else {
 				return <div key={index} style={{width: 200, backgroundColor: 'powderblue'}} className='gameBlock'>
 						<p> reused: {box.reuse} times </p>					
-						<Link to={'/matchGame'} onClick={handleAction}  data-key={box.box_id}>Reuse</Link>
-		          		<Link to={'/recycleGame'} onClick={handleAction}  data-key={box.box_id}>Recycle</Link>
-		          		<Link to={'/Trash'} onClick={handleAction} data-key={box.box_id}>Trash</Link>
+						<Button><Link to={'/matchGame'} onClick={handleAction}  data-key={box.box_id}>Reuse</Link></Button>
+		          		<Button><Link to={'/recycleGame'} onClick={handleAction}  data-key={box.box_id}>Recycle</Link></Button>
+		          		<Button><Link to={'/Trash'} onClick={handleAction} data-key={box.box_id}>&#128465;</Link></Button>
 		          		</div>
 	         }
 		} else {
