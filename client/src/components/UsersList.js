@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Table } from 'react-bootstrap';
 
 const UsersList = ({ users }) => {
 	const renderUsers = users.map(user =>
@@ -15,9 +16,9 @@ const UsersList = ({ users }) => {
 
 	return (
 		<div>
-			<table>
-				<thead><tr><th>Villager Name</th><th style={{color: "purple"}}>&hearts;</th><th>&#128465;</th></tr></thead>
-				<tbody>{renderUsers}</tbody>
+			<table >
+				<thead><tr><th>Villagers</th><th style={{color: "purple"}}>&hearts;</th><th>&#128465;</th></tr></thead>
+				<tbody style={{background: "aqua"}}>{renderUsers}</tbody>
 			</table>
 		</div>
 	);
