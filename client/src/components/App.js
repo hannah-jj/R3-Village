@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Route, Switch, Link} from 'react-router-dom';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import UsersPage from '../containers/UsersPage';
 import UsersNew from '../containers/UsersNew';
 import MatchGame from '../containers/MatchGame';
@@ -11,11 +12,15 @@ import TrashMsg from './Trash';
 const App = (props) => 
 	<Router>
 		<div>
-	      <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
-	            <NavLink style={{ marginRight: '10px' }} to="/"><img src="favicon.ico" alt="Home" /></NavLink>
-        		<NavLink style={{ marginRight: '10px' }} to="/users">See All The Villagers!</NavLink>
-        		<NavLink style={{ marginRight: '10px' }} to="/users/new">Add A Villager</NavLink>
-      		</div>
+	    <Navbar inverse collapseOnSelect>
+	            	<Navbar.Header>
+	            		<Navbar.Brand><a href='/'>Home</a></Navbar.Brand>
+	            		<Navbar.Brand><a href='/users'>Villagers</a></Navbar.Brand>
+	            		<Navbar.Brand><a href='/users/new'>Join Village</a></Navbar.Brand>
+	            	<Navbar.Toggle />
+	            	</Navbar.Header>
+        		</Navbar>
+      		
 			<Switch>
 				<Route exact path='/' component={UsersNew} />
 				<Route exact path='/users/new' component={UsersNew} />
