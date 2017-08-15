@@ -8,6 +8,7 @@ import RecycleGame from '../containers/RecycleGame';
 import LearnGame from '../containers/LearnGame';
 import GamesPage from './GamesPage';
 import TrashMsg from './Trash';
+import Balloons from './Balloons';
 
 const App = (props) => 
 	<Router>
@@ -22,15 +23,7 @@ const App = (props) =>
         		</Navbar>
       		
 			<Switch>
-				<Route exact path='/' render={() => (	
-					<div>
-						<img className='balloon' src='/balloons/balloon3.png' />
-						<div className='usersContainer'>	
-							<h1>Welcome to R3 Village</h1>
-							<h2>Reduce, Recycle and Reuse with <strong style={{color: "purple"}}>&hearts;</strong></h2>
-							<h2>Can you find the <img className='symbol' src='/balloons/balloon3.png' /> ? </h2>
-						</div>
-					</div> )} />
+
 				<Route exact path='/users/new' component={UsersNew} />
 				<Route path="/users" component={UsersPage} />
 				<Route path='/matchGame' component={MatchGame} />
@@ -38,6 +31,16 @@ const App = (props) =>
 				<Route path='/learnGame' component={LearnGame} />
 				<Route path='/Games' component={GamesPage} />
 				<Route path='/Trash' component={TrashMsg} />
+				<Route exact path='/' render={() => (	
+					<div>
+						<Balloons />
+						<div className='usersContainer'>	
+							<h1>Welcome to R3 Village</h1>
+							<h2>Reduce, Recycle and Reuse with <strong style={{color: "purple"}}>&hearts;</strong></h2>
+							<h2>Can you find the <img className='symbol' src='/balloons/balloon3.png' /> ? </h2>
+						</div>
+					</div> )} />
+
 			</Switch>
 		</div>
 	</Router>
