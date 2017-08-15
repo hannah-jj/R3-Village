@@ -12,7 +12,7 @@ import TrashMsg from './Trash';
 const App = (props) => 
 	<Router>
 		<div>
-	    <Navbar inverse collapseOnSelect>
+	    <Navbar>
 	            	<Navbar.Header>
 	            		<Navbar.Brand><a href='/'>Home</a></Navbar.Brand>
 	            		<Navbar.Brand><a href='/users'>Villagers</a></Navbar.Brand>
