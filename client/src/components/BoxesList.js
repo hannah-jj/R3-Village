@@ -1,25 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Panel, Button } from 'react-bootstrap';
 
 const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewToy}) => {
 
 	var renderBoxes = boxes.map((box, index) => {
 		if (currentClick == index) {
 			if (box.name == 'default'){
-				return <div key={index} style={{width: 200, backgroundColor: 'powderblue'}}className='gameBlock'>					
-					<p><button onClick={handleNewToy} >Add a Toy</button></p>
-					<Link to={'/learnGame'} onClick={handleAction}>Learn Something New</Link>
+				return <div key={index} style={{width: 200}} className='gameBlock'>
+					<Panel header='This box is empty. You can:' bsStyle="success">					
+						<Button bsSize="xsmall" onClick={handleNewToy} >Add a Toy</Button>
+						<Button bsSize="xsmall" ><Link to={'/learnGame'} >Play</Link></Button>
+					</Panel>
 	          		</div>
 			} else {
-				return <div key={index} style={{width: 200, backgroundColor: 'powderblue'}} className='gameBlock'>
-						<p> reused: {box.reuse} times </p>					
-						<Link to={'/matchGame'} onClick={handleAction}  data-key={box.box_id}>Reuse</Link>
-		          		<Link to={'/recycleGame'} onClick={handleAction}  data-key={box.box_id}>Recycle</Link>
-		          		<Link to={'/Trash'} onClick={handleAction} data-key={box.box_id}>Trash</Link>
+				return <div key={index} style={{width: 200}} className='gameBlock'>
+						<Panel header="You have a toy here" bsStyle="success">
+							<p> reused: {box.reuse} times </p>				
+							<Button bsSize="xsmall"><Link to={'/matchGame'} onClick={handleAction}  data-key={box.box_id}>Reuse</Link></Button>
+			          		<Button bsSize="xsmall"><Link to={'/recycleGame'} onClick={handleAction}  data-key={box.box_id}>Recycle</Link></Button>
+			          		<Button bsSize="xsmall"><Link to={'/Trash'} onClick={handleAction} data-key={box.box_id}>&#128465;</Link></Button>
+		          		</Panel>
 		          		</div>
 	         }
 		} else {
-			return <div key={index} className='gameBlock'> <img onClick={handleChange} src={box.picture} alt={box.name} data-key={index} /></div>
+			return <div key={index} className='gameBlock'> <img onMouseOver={handleChange} src={box.picture} alt={box.name} data-key={index} /></div>
 		}
 	});
 

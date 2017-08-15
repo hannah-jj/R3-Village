@@ -10,8 +10,19 @@ import * as actions from '../actions/index.js';
 
 
 class UsersPage extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			currentHover: -1
+		};
+	}
 	componentDidMount(){
 		this.props.actions.fetchUsers('/api/users');
+	}
+
+	mouseOverCallBack(e){
+		let t = e.target;
+		this.setState({currentHover: t.getAttribute('data-key')});
 	}
 	render(){
 	  const {match, users} = this.props;
@@ -22,7 +33,7 @@ class UsersPage extends Component {
 			<Switch>
 				<Route path={`${match.url}/new`} component={UsersNew} />
 				<Route path={`${match.url}/:userId`} component={UserShow} />
-				<Route exact path={match.url} render={() => (<UsersList users={users} />)}/>
+				<Route exact path={match.url} render={() => (<UsersList users={users} handleHover={this.mouseOverCallBack.bind(this)} currentHover={this.state.currentHover} />)}/>
 			</Switch>
 		</div>
 	   )

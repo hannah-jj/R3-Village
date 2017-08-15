@@ -10,6 +10,8 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -33,40 +35,21 @@
       .learnBlock {display: inline-block; width: 800px; }
       .answerBlock {font-size: 100px; display: inline-block; background-color: #BEF2BC; width: 100px; margin: 5px; }
       /*#BEF2BC. #E6BCF2*/
-
-      /*below codes sourced from https://tutorialzine.com/2013/10/12-awesome-css3-features-you-can-finally-use */
-.container{width: 300px;height:300px;margin: 0 auto;position:absolute;overflow:hidden;}
-
-.planet{position:absolute;top:0;left:0;width:100%;height:100%;background:url(https://demo.tutorialzine.com/2013/10/css3-features-you-can-finally-use/assets/img/planet.png) no-repeat center center;
-}
-
-.rocket{position:absolute;top:0;left:0;width:100%;height:100%;background:url(https://demo.tutorialzine.com/2013/10/css3-features-you-can-finally-use/assets/img/rocket.png) no-repeat 50px center;
-
-    /* Chrome still requires the -webkit- prefix */-webkit-animation:orbit 2s linear infinite;animation:orbit 2s linear infinite;
-transition:background-position 0.8s;
-}
-
-.container:hover .rocket{
-    background-position:80px center;
-}
-
-/* Define the keyframes of the animation */
-
-@-webkit-keyframes orbit {
-    from {
-        -webkit-transform:rotate(0deg);}
-    to {
-        -webkit-transform:rotate(360deg);
+      body {background: url('https://static.vecteezy.com/system/resources/previews/000/140/379/non_2x/mountain-village-vector-background.jpg') no-repeat center center fixed; background-size: cover;}
+      .usersContainer {background-color: rgba(225,225,225, .5); width: 610px; margin: 80px;}
+      .userContainer {border-style: solid; border-color: Olive;}
+      .userContainerHover {border-style: solid; border-color: Fuchsia;}
+      .avatarContainer {border-style: solid;}
+      img.balloon {position: fixed; bottom: 0; width: 200px;     transition-property: bottom, width;
+    transition-duration: 5s;
     }
-}
+      img.balloon:hover {
+          bottom: 600px;
+          width: 50px;
+      }
+      img.symbol {width: 25px;}
+      footer {position: fixed; bottom: 0;}
 
-@keyframes orbit {
-    from {
-        transform:rotate(0deg); -webkit-transform:rotate(0deg);}
-    to {
-        transform:rotate(360deg); -webkit-transform:rotate(360deg);
-    }
-}
 
     </style>
     <div id="root"></div>
@@ -80,5 +63,6 @@ transition:background-position 0.8s;
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <footer> Illustrations by <a rel="nofollow" href="https://www.Vecteezy.com/">Vecteezy.com</a></footer>
   </body>
 </html>

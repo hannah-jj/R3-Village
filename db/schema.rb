@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809162415) do
+ActiveRecord::Schema.define(version: 20170813225233) do
 
   create_table "boxes", force: :cascade do |t|
     t.boolean "active"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170809162415) do
     t.integer "limit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "avatar"
   end
 
 end
