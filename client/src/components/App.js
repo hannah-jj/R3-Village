@@ -22,7 +22,15 @@ const App = (props) =>
         		</Navbar>
       		
 			<Switch>
-				<Route exact path='/' component={UsersNew} />
+				<Route exact path='/' render={() => (	
+					<div>
+						<img className='balloon' src='/balloons/balloon3.png' />
+						<div className='usersContainer'>	
+							<h1>Welcome to R3 Village</h1>
+							<h2>Reduce, Recycle and Reuse with <strong style={{color: "purple"}}>&hearts;</strong></h2>
+							<h2>Can you find the <img className='symbol' src='/balloons/balloon3.png' /> ? </h2>
+						</div>
+					</div> )} />
 				<Route exact path='/users/new' component={UsersNew} />
 				<Route path="/users" component={UsersPage} />
 				<Route path='/matchGame' component={MatchGame} />

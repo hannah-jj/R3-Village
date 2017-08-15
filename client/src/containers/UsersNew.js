@@ -9,36 +9,62 @@ class UsersNew extends Component {
 		super(props);
 		this.state = {
 			name: '',
-			redirect: false
+			avatar: 1,
+			redirect: false,
+			avatars: []
 		};
+	}
+
+	componentWillMount(){
+		let i = 1;
+		let avatars = [];
+		for (i = 1; i < 9; i ++ ) {
+			 avatars.push(`/avatars/avatar${i}.png`);
+		}
+		this.setState({avatars: avatars});
+
 	}
 
 	handleOnSubmit = event => {
 		event.preventDefault();
 		let userName = this.state.name;
+		let avatar = this.state.avatar;
+
 		userName = userName == '' ? "guest" : userName;
-		this.props.actions.addUser('/api/users', {name: userName});
+		this.props.actions.addUser('/api/users', {name: userName, avatar: avatar});
 		this.setState({redirect: true});
 	}
 
-	handleOnChange = event => {
+	handleOnChange = e => {
 		this.setState({
-			name: event.target.value
+			name: e.target.value
+		})
+	}
+
+	handleHover = e => {
+		this.setState({
+			avatar: e.target.getAttribute('data-key')
 		})
 	}
 
 	render() {
+
 		if (this.state.redirect === true ) {
 			return (<div><p>New Villager Created<Link style={{ marginRight: '12px' }}
 			 	to={`/users`}>home</Link></p></div>);
 		}
 
+		const renderAvatars = this.state.avatars.map((avatar, index)=>{
+			return (
+				<div key={index} className={index+1 == this.state.avatar ? 'gameBlock avatarContainer' : 'gameBlock'}>
+					<img data-key={index+1} style={{width: 100}} src={avatar} alt="avatar"  onClick={this.handleHover.bind(this)}/>
+				</div>
+			);
+		})
+
 		return (
-			<div>
-				
-				<h1>Welcome to R3 Village</h1>
-				<h2>Reduce, Recycle and Reuse with <strong style={{color: "purple"}}>&hearts;</strong></h2>
-				<h3>what's Your Name?</h3>
+			<div className='usersContainer'>	
+				<h1>What's Your Name & Avatar?</h1>
 				<form onSubmit={this.handleOnSubmit}>
 					<input type="text"
 						placeholder="Name"
@@ -49,7 +75,9 @@ class UsersNew extends Component {
 						type="submit"
 						value="Join R3 Village" />
 				</form>
+				{renderAvatars}
 			</div>
+		
 		);
 	}
 };
@@ -59,3 +87,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps) (UsersNew);
+
+			
