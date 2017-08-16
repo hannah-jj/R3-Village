@@ -14,13 +14,12 @@ class UsersPage extends Component {
 		super(props);
 		this.state = {
 			currentHover: -1,
-			likes: []
+			like: 0
 		};
 	}
 	componentDidMount(){
 		this.props.actions.fetchUsers('/api/users').then(() => {
-				let userNum = this.props.users.length;
-			console.log(`usernum is ${userNum}`)
+			let userNum = this.props.users.length;
 			let i = 0;
 			let newLikes = [];
 			for (i = 0; i < userNum; i ++) {
@@ -37,12 +36,17 @@ class UsersPage extends Component {
 	}
 
 	likesButtonCallback(e){
+		let users = this.props.users;
 		let t = e.target;
-		let likeIndex = t.getAttribute('data-key');
-		let newLikes = [...this.state.likes];
-		newLikes[likeIndex] = newLikes[likeIndex] + 1;
+		let index = t.getAttribute('data-key');
+		
+		let newLikes = users[index].likes + 1;
+		
+		let url = `/api/users/${users[index].id}`;
 
-		this.setState({likes: newLikes});
+		this.props.actions.updateUser(url, {likes: newLikes}).then(
+			()=> this.setState({likes: this.state.likes + 1}));
+		// update the state to trigger re-rendering
 	}
 	render(){
 	  const {match, users} = this.props;

@@ -55,12 +55,12 @@ const addUser = (url, info) => {
   }
 }
 
-//update User, API will return all users info
+//update User
 const updateUser = (url, info) => {
   return function(dispatch) {
     return VillageAPI.updateInfo(url, info)
-      .then(users => {
-      dispatch(success('FETCH_USER', users))
+      .then(user => {
+      dispatch(success('UPDATE_USER', user))
     })
   }
 }

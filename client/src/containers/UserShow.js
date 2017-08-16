@@ -73,9 +73,10 @@ class UserShow extends Component {
 		let user_id = this.props.user.id;
 
 		
-		this.props.actions.addBox('/api/boxes', {active: true, item_id: item_id, user_id: user_id});
+		this.props.actions.addBox('/api/boxes', {active: true, item_id: item_id, user_id: user_id}).then(
+			()=>{this.setState({addToy: false, currentClick: -1});});
 		this.props.actions.fetchUsers('/api/users');
-		this.setState({addToy: false, currentClick: -1});
+		
 	}
 
 	//add to user's happiness and pollution

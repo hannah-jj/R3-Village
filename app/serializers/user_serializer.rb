@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :happiness, :pollution, :active_boxes
+  attributes :id, :name, :happiness, :pollution, :avatar, :likes, :active_boxes
 
   def active_boxes
   	boxes = object.show_boxes

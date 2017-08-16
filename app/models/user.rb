@@ -8,6 +8,7 @@ class User < ApplicationRecord
 		self.limit ||= 9
 		self.happiness ||= 0
 		self.pollution ||= 0
+		self.likes ||=0
 	end
 
 	def self.world_pollution

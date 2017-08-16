@@ -12,15 +12,12 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.create(user_params)
-		#@users = User.all
-		render json: @user
-		#render 'users/show.json.jbuilder'
+		render json: @user, each_serializer: UsersSerializer
 	end
 
 	def update
 		@user.update(user_params)
-		@users = User.all
-		render json: @users, each_serializer: UsersSerializer
+		render json: @user, each_serializer: UsersSerializer
 	end
 
 
@@ -31,6 +28,6 @@ class UsersController < ApplicationController
 
 	def user_params
 		params.require(:user).permit(
-			:name, :happiness, :pollution, :avatar)
+			:name, :happiness, :pollution, :avatar, :likes)
 	end
 end

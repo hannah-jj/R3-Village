@@ -3,8 +3,11 @@ export default (state = [], action) => {
   	case 'FETCH_USERS':
   	  return action.payload;  
   	case 'ADD_USER':
-  	  return [...state, action.payload]
-  	  // return action.payload; 
+  	  return [...state, action.payload];
+  	 case 'UPDATE_USER':
+     console.log(action.payload)
+  	  let index = state.findIndex( user => user.id == action.payload.id );
+  	  return Object.assign([...state], {[index]: action.payload} );
     default:
       return state;
   }
