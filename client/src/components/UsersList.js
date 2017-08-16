@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const UsersList = ({ users, handleHover, currentHover}) => {
-	const renderUsers = users.map(user => 
+const UsersList = ({ users, handleHover, currentHover, likes, handleLike}) => {
+	const renderUsers = users.map((user, index) => 
 {	let imgSrc = `/avatars/avatar${user.avatar}.png`;
 	return (<div key={user.id} className={user.id == currentHover ? 'userContainerHover' : 'userContainer'} data-key={user.id} onMouseOver={handleHover}>
 				<div className='gameBlock'><img style={{width: 100}} src={imgSrc} alt="avatar"/></div>
@@ -12,6 +12,7 @@ const UsersList = ({ users, handleHover, currentHover}) => {
 				
 				<p><strong>&hearts; {user.happiness}</strong></p>
 				<p><strong>&#128465; {user.pollution}</strong></p>
+				<p><button data-key={index} onClick={handleLike}>Like</button> {likes[index]} </p>
 				</div>
 			</div>)}
 	);

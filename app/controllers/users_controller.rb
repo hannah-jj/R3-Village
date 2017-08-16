@@ -12,8 +12,9 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.create(user_params)
-		@users = User.all
-		render json: @users
+		#@users = User.all
+		render json: @user
+		#render 'users/show.json.jbuilder'
 	end
 
 	def update

@@ -49,8 +49,8 @@ const updateBox = (url, info) => {
 const addUser = (url, info) => {
   return function(dispatch) {
     return VillageAPI.addInfo(url, info)
-      .then(users => {
-      dispatch(success('ADD_USER', users))
+      .then(user => {
+      dispatch(success('ADD_USER', user))
     })
   }
 }
