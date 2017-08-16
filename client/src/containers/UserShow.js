@@ -61,7 +61,9 @@ class UserShow extends Component {
 			updateBoxInfo = { reuse: this.props.boxes[clickedBox].reuse + 1};
 		}
 		let boxUrl = `/api/boxes/${boxId}`;
-		this.props.actions.updateBox(boxUrl, updateBoxInfo);
+		if (actionItem !== 'learnGame') {
+			this.props.actions.updateBox(boxUrl, updateBoxInfo);
+		}
 	}
 
 	newToyCallback(e) {
@@ -74,7 +76,10 @@ class UserShow extends Component {
 
 		
 		this.props.actions.addBox('/api/boxes', {active: true, item_id: item_id, user_id: user_id}).then(
-			()=>{this.setState({addToy: false, currentClick: -1});});
+			()=>{
+				this.setState({addToy: false, currentClick: -1});
+			}
+				);
 		this.props.actions.fetchUsers('/api/users');
 		
 	}

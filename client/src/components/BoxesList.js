@@ -10,7 +10,7 @@ const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewTo
 				return <div key={index} style={{width: 200}} className='gameBlock'>
 					<Panel header='This box is empty. You can:' bsStyle="success">					
 						<Button bsSize="xsmall" onClick={handleNewToy} >Add a Toy</Button>
-						<Button bsSize="xsmall" ><Link to={'/learnGame'} >Play</Link></Button>
+						<Button bsSize="xsmall" ><Link to={'/learnGame'}  onClick={handleAction}>Play</Link></Button>
 					</Panel>
 	          		</div>
 			} else {
