@@ -14,18 +14,18 @@ class UsersPage extends Component {
 		super(props);
 		this.state = {
 			currentHover: -1,
-			like: 0
+			likes: []
 		};
 	}
 	componentDidMount(){
 		this.props.actions.fetchUsers('/api/users').then(() => {
-			let userNum = this.props.users.length;
-			let i = 0;
-			let newLikes = [];
-			for (i = 0; i < userNum; i ++) {
-				newLikes.push(0);
-			}
-			this.setState({likes: newLikes});
+			// let userNum = this.props.users.length;
+			// let i = 0;
+			// let newLikes = [];
+			// for (i = 0; i < userNum; i ++) {
+			// 	newLikes.push(0);
+			// }
+			// this.setState({likes: newLikes});
 		});
 	
 	}
@@ -39,10 +39,10 @@ class UsersPage extends Component {
 		let users = this.props.users;
 		let t = e.target;
 		let index = t.getAttribute('data-key');
-		
-		let newLikes = users[index].likes + 1;
-		
-		let url = `/api/users/${users[index].id}`;
+		let user = users.find( user => user.id == index);
+		let newLikes = user.likes + 1;
+
+		let url = `/api/users/${index}`;
 
 		this.props.actions.updateUser(url, {likes: newLikes}).then(
 			()=> this.setState({likes: this.state.likes + 1}));
@@ -50,7 +50,7 @@ class UsersPage extends Component {
 	}
 	render(){
 	  const {match, users} = this.props;
-
+	  
 	  return(
 		<div>
 			
